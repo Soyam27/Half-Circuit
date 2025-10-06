@@ -70,18 +70,16 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: calc(var(--vh, 1vh) * 100);
   font-family: 'Pixelify Sans', 'Inter', sans-serif;
-  background-color: #020617; /* Solid fallback */
   background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.12), transparent 60%),
               radial-gradient(circle at 80% 70%, rgba(168,85,247,0.12), transparent 65%),
               linear-gradient(115deg, #020617 0%, #0f172a 45%, #1e293b 70%, #020617 100%);
   background-size: 200% 200%;
   animation: globalPan 40s linear infinite;
   color: var(--surface-100);
-  overflow-x: hidden; /* Prevent horizontal scroll on small devices */
-  background-attachment: local; /* Use local on mobile for better compatibility */
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Light theme overrides */
@@ -505,71 +503,10 @@ input, textarea, select {
 /* ---------------------------------- */
 /* Mobile Responsive Adjustments      */
 /* ---------------------------------- */
-/* Mobile full viewport fix */
-html {
-  height: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
-}
-
-body {
-  height: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
-}
-
-#root {
-  min-height: 100vh;
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
-}
-
-/* Universal mobile bottom gap fix */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(115deg, #020617 0%, #0f172a 45%, #1e293b 70%, #020617 100%);
-  z-index: -1000;
-  pointer-events: none;
-}
-
 @media (max-width: 480px) {
-  /* Reduce default container side padding slightly on very small screens */
-  .container-premium { padding-left: 0.85rem; padding-right: 0.85rem; }
-
-  /* Hide heavy decorative blobs for performance & layout clarity */
+  .container-premium { padding-left: .9rem; padding-right: .9rem; }
   .hero-blob, .hero-bg-blob { display: none !important; }
-
-  /* Slightly reduce glass padding defaults when utility classes not overridden */
-  .glass-effect { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-
-  /* Headings scale down a bit more aggressively */
-  h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); line-height: 1.15; }
-  h2 { font-size: clamp(1.35rem, 6vw, 1.75rem); line-height: 1.2; }
-  h3 { font-size: clamp(1.15rem, 5.2vw, 1.35rem); }
-
-  /* Improve readability for long continuous strings */
-  p, li { overflow-wrap: anywhere; }
-
-  /* Ensure interactive cards don't scale too large */
-  .interactive-card { transform: none !important; }
-  .interactive-card:hover { transform: translateY(-4px) !important; }
-
-  /* Ensure solid backgrounds on mobile without conflicting positioning */
-  .mobile-nav-overlay {
-    background-color: #0f172a !important;
-  }
-
-  /* Mobile webkit fix */
-  html, body, #root {
-    -webkit-overflow-scrolling: touch;
-    background-attachment: local !important;
-    min-height: -webkit-fill-available !important;
-  }
+  h1 { font-size: clamp(1.85rem, 7.2vw, 2.35rem); }
+  h2 { font-size: clamp(1.4rem, 6.2vw, 1.8rem); }
+  h3 { font-size: clamp(1.2rem, 5.4vw, 1.45rem); }
 }
