@@ -9,7 +9,7 @@ Half Circuit lets you explore any topic by automating Google searches, scraping 
 ## 🚀 Features
 
 - 🔍 **Smart Search** – Enter any topic (e.g., “DSA Linked List”) and get live scraped search results.  
-- 🧾 **Deep Web Scraping** – Explore full website content, organized by headings, subheadings, and media.  
+- 🧾 **Web Scraping** – Explore full website content, organized by headings, subheadings, and media.  
 - 🤖 **GenAI Summarization** – Instantly summarize scraped content for quick insights.  
 - ⚙️ **Automation Engine** – Automates scraping and organizes everything dynamically.  
 - 💎 **Modern UI** – Beautiful dark, glass-effect interface built with TailwindCSS.  
