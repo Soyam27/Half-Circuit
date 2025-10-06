@@ -80,7 +80,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="pt-28 sm:pt-32 pb-16 px-4 min-h-screen flex items-center justify-center relative overflow-hidden">
+  <div className="pt-28 sm:pt-32 pb-16 px-4 min-h-app flex items-center justify-center relative overflow-hidden pa-safe">
       {/* Enhanced background effects - hide on mobile to prevent white flickers */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" />
       <div className="hidden sm:block absolute top-1/3 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />

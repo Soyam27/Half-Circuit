@@ -157,7 +157,7 @@ const Hero = () => {
   };
 
   return (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 scroll-mt-24">
+  <section className="relative min-h-app flex items-center justify-center overflow-hidden px-4 sm:px-6 scroll-mt-24">
 
       {/* Large Background Blob */}
       <div className="hero-bg-blob animate-blob-float animate-blob-pulse" style={{animationDelay: '0s, 1s'}} />

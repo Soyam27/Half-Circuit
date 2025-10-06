@@ -3,18 +3,36 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-// Mobile dynamic viewport height fix (avoids bottom white gap on real devices)
+// Mobile dynamic viewport height fix with visualViewport (reduces bottom gap on iOS/Android)
 const setVh = () => {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  const vv = window.visualViewport;
+  const height = vv ? vv.height : window.innerHeight;
+  const unit = height * 0.01; // 1% of the visual viewport
+  document.documentElement.style.setProperty('--vh', `${unit}px`);
+  document.documentElement.style.setProperty('--app-vh', `${unit}px`);
 };
+
+// Use rAF to avoid layout thrash during resize
+let resizeRaf;
+const scheduleVh = () => {
+  if (resizeRaf) cancelAnimationFrame(resizeRaf);
+  resizeRaf = requestAnimationFrame(setVh);
+};
+
 setVh();
-window.addEventListener('resize', setVh);
-window.addEventListener('orientationchange', () => setTimeout(setVh, 250));
-// Cleanup listener on hot reload (vite) / module dispose
+window.addEventListener('resize', scheduleVh, { passive: true });
+window.addEventListener('orientationchange', () => setTimeout(setVh, 300));
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', scheduleVh, { passive: true });
+}
+
 if (import.meta && import.meta.hot) {
   import.meta.hot.dispose(() => {
-    window.removeEventListener('resize', setVh);
+    window.removeEventListener('resize', scheduleVh);
+    window.removeEventListener('orientationchange', setVh);
+    if (window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', scheduleVh);
+    }
   });
 }
 

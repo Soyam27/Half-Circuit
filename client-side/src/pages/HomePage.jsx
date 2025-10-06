@@ -12,7 +12,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+  <div className="min-h-app">
       <Hero onSearch={handleSearch} />
       <Features />
     </div>

@@ -66,11 +66,15 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #020617; /* fallback to avoid white behind body */
+  min-height: 100%;
+  overscroll-behavior: none; /* prevent rubber band exposing white */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  min-height: calc(var(--vh, 1vh) * 100);
+  min-height: 100%;
   font-family: 'Pixelify Sans', 'Inter', sans-serif;
   background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.12), transparent 60%),
               radial-gradient(circle at 80% 70%, rgba(168,85,247,0.12), transparent 65%),
@@ -80,6 +84,17 @@ body {
   color: var(--surface-100);
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+/* App viewport height utility using dynamic --vh (visual viewport) */
+.min-h-app {
+  min-height: calc(var(--app-vh, var(--vh, 1vh)) * 100); /* layered fallback */
+}
+
+/* Safe area padding utility (apply to wrappers if content touches edges) */
+.pa-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 1rem);
 }
 
 /* Light theme overrides */
