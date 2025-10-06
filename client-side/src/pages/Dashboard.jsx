@@ -148,14 +148,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container-premium pt-40 pb-12">
+    <div className="container-premium pt-36 sm:pt-40 pb-12">
       <div className="max-w-7xl mx-auto mb-10 mt-30">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-black text-white mb-4">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-black text-white mb-3 sm:mb-4">
             <span className="text-gradient">Dashboard</span>
           </h1>
-          <p className="text-slate-300 text-lg">
+          <p className="text-slate-300 text-base sm:text-lg">
             Track your research progress and manage saved content
           </p>
         </div>
@@ -173,8 +173,8 @@ const Dashboard = () => {
         )}
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="glass-effect p-6 rounded-xl">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="glass-effect p-4 sm:p-6 rounded-xl">
             <div className="flex items-center justify-between mb-4">
               <Search className="text-blue-400" size={24} />
               <span className="text-2xl font-bold text-white">{stats.totalSearches}</span>

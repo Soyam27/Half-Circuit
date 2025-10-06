@@ -37,9 +37,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 backdrop-blur-md ${
-        scrolled ? 'shadow-md' : 'shadow-none'
-      } ${open ? 'bg-slate-900/90' : 'bg-slate-900/65'}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-xl ${
+        scrolled ? 'shadow-lg' : 'shadow-none'
+      } ${open ? 'bg-slate-900 shadow-xl' : 'bg-slate-900/90'}`}
     >
       <div className="container-premium">
         <div className="flex justify-between items-center h-20 py-3">
@@ -142,10 +142,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation (auto height inside nav) */}
+      {/* Mobile Navigation */}
       {open && (
-        <div id="mobile-nav" className="md:hidden">
-          <div className="px-4 pt-2 pb-4 space-y-1 glass-effect border-t border-slate-700/50 shadow-lg">
+        <div className="md:hidden absolute top-full left-0 w-full bg-slate-900 mobile-nav-overlay">
+          <div className="px-4 pt-2 pb-6 space-y-1 border-t border-slate-700/60 shadow-xl">
             {navItems.filter(item => !(item.protected && !user)).map((item) => (
               <Link
                 key={item.name}

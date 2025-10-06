@@ -64,22 +64,22 @@ const Footer = () => {
               
               {/* Brand Section */}
               <div className="lg:col-span-2">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center shadow-lg">
-                    <Brain size={28} className="text-white" />
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 gradient-primary rounded-xl flex items-center justify-center shadow-lg">
+                    <Brain size={24} className="sm:size-[28px] text-white" />
                   </div>
-                  <div className="text-2xl font-black text-white">
+                  <div className="text-xl sm:text-2xl font-black text-white">
                     Half<span className="text-gradient">Circuit</span>
                   </div>
                 </div>
                 
-                <p className="text-slate-300 text-lg mb-8 max-w-md leading-relaxed">
+                <p className="text-slate-300 text-base sm:text-lg mb-6 sm:mb-8 max-w-md leading-relaxed">
                   Transforming how you discover, analyze, and organize knowledge with 
                   cutting-edge AI technology and intelligent automation.
                 </p>
 
                 {/* Contact Info */}
-                <div className="space-y-4 mb-8">
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <div className="flex items-center gap-3 text-slate-400">
                     <Mail size={18} />
                     <span>soyampaul34@gmail.com</span>

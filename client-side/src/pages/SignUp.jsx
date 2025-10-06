@@ -80,11 +80,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="pt-32 pb-16 px-4 min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Enhanced background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 opacity-95" />
-      <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+    <div className="pt-28 sm:pt-32 pb-16 px-4 min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Enhanced background effects - hide on mobile to prevent white flickers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" />
+      <div className="hidden sm:block absolute top-1/3 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="hidden sm:block absolute bottom-1/3 right-1/3 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
       <div className="w-full max-w-md glass-effect-ultra relative p-8 z-10">
         {/* Enhanced header */}

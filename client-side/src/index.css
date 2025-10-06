@@ -79,6 +79,7 @@ body {
   animation: globalPan 40s linear infinite;
   color: var(--surface-100);
   overflow-x: hidden; /* Prevent horizontal scroll on small devices */
+  background-attachment: fixed; /* Prevent white flashes during scroll on mobile */
 }
 
 /* Light theme overrides */
@@ -523,4 +524,14 @@ input, textarea, select {
   /* Ensure interactive cards don't scale too large */
   .interactive-card { transform: none !important; }
   .interactive-card:hover { transform: translateY(-4px) !important; }
+
+  /* Prevent mobile white flickers */
+  body { 
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure solid backgrounds on mobile without conflicting positioning */
+  .mobile-nav-overlay {
+    background-color: #0f172a !important;
+  }
 }
