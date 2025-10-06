@@ -505,6 +505,40 @@ input, textarea, select {
 /* ---------------------------------- */
 /* Mobile Responsive Adjustments      */
 /* ---------------------------------- */
+/* Mobile full viewport fix */
+html {
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+body {
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+/* Universal mobile bottom gap fix */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(115deg, #020617 0%, #0f172a 45%, #1e293b 70%, #020617 100%);
+  z-index: -1000;
+  pointer-events: none;
+}
+
 @media (max-width: 480px) {
   /* Reduce default container side padding slightly on very small screens */
   .container-premium { padding-left: 0.85rem; padding-right: 0.85rem; }
@@ -527,54 +561,15 @@ input, textarea, select {
   .interactive-card { transform: none !important; }
   .interactive-card:hover { transform: translateY(-4px) !important; }
 
-  /* Prevent mobile white flickers and ensure full coverage */
-  html, body { 
-    -webkit-overflow-scrolling: touch;
-    background-attachment: local; /* Override fixed attachment on mobile */
-  }
-  
   /* Ensure solid backgrounds on mobile without conflicting positioning */
   .mobile-nav-overlay {
     background-color: #0f172a !important;
   }
 
-  /* Mobile-specific viewport and safe area fixes */
-  html {
-    height: 100% !important;
+  /* Mobile webkit fix */
+  html, body, #root {
+    -webkit-overflow-scrolling: touch;
+    background-attachment: local !important;
     min-height: -webkit-fill-available !important;
-  }
-  
-  body {
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    position: relative !important;
-  }
-
-  /* Force root container to fill available space */
-  #root {
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    position: relative !important;
-  }
-
-  /* Fix viewport units on mobile */
-  .min-h-screen,
-  .min-h-\[100dvh\] {
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-  }
-
-  /* Add bottom safe area for iOS and modern browsers */
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: calc(100px + env(safe-area-inset-bottom));
-    background: #020617;
-    z-index: -999;
   }
 }
