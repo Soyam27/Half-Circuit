@@ -22,7 +22,7 @@ beautifulsoup4==4.12.3     # HTML parsing (BeautifulSoup)
 soupsieve==2.6             # bs4 dependency (explicit pin for reproducibility)
 
 # Google Generative AI (gemini)
-google-generativeai==0.8.3 # Provides google.genai Client (imported as from google import genai)
+google-genai==0.3.0        # Correct SDK for `from google import genai` (replaces google-generativeai)
 
 # Firebase Admin SDK
 firebase-admin==6.5.0      # Firestore + credentials certificate initialization
