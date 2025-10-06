@@ -157,15 +157,15 @@ const Hero = () => {
   };
 
   return (
-  <section className="relative min-h-app flex items-center justify-center overflow-hidden px-4 sm:px-6 scroll-mt-24">
+  <section className="relative min-h-app flex items-center justify-center overflow-hidden px-3 sm:px-6 scroll-mt-24">
 
-      {/* Large Background Blob */}
-      <div className="hero-bg-blob animate-blob-float animate-blob-pulse" style={{animationDelay: '0s, 1s'}} />
+      {/* Large Background Blob - Hide on mobile to improve performance */}
+      <div className="hidden sm:block hero-bg-blob animate-blob-float animate-blob-pulse" style={{animationDelay: '0s, 1s'}} />
       
-      {/* Hero Section Blobs */}
-      <div className="hero-blob hero-blob-1 animate-blob-float animate-blob-pulse" />
-      <div className="hero-blob hero-blob-2 animate-blob-float animate-blob-pulse" style={{animationDelay: '8s, 2s'}} />
-      <div className="hero-blob hero-blob-3 animate-blob-float animate-blob-pulse" style={{animationDelay: '16s, 4s'}} />
+      {/* Hero Section Blobs - Hide on mobile */}
+      <div className="hidden sm:block hero-blob hero-blob-1 animate-blob-float animate-blob-pulse" />
+      <div className="hidden sm:block hero-blob hero-blob-2 animate-blob-float animate-blob-pulse" style={{animationDelay: '8s, 2s'}} />
+      <div className="hidden sm:block hero-blob hero-blob-3 animate-blob-float animate-blob-pulse" style={{animationDelay: '16s, 4s'}} />
 
       {/* Floating Icons - Only on large screens */}
       <div className="hidden lg:block">
@@ -175,61 +175,67 @@ const Hero = () => {
         <FloatingIcon icon={Sparkles} delay={3} position="bottom-24 right-20" />
       </div>
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black_70%,transparent_100%)]" />
+      {/* Grid Pattern - Subtle on mobile */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] sm:bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black_70%,transparent_100%)]" />
 
-      <div className="container-premium relative z-10 pt-20">
-        <div className=" sm:mt-12 max-w-4xl lg:max-w-5xl mx-auto text-center">
+      <div className="container-premium relative z-10 pt-12 sm:pt-20">
+        <div className="sm:mt-8 lg:mt-12 max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto text-center">
           
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 glass-effect rounded-full text-sm font-medium text-blue-200 animate-pulse-slow">
-            <Sparkles size={16} className="text-blue-400" />
-            <span>AI-Powered Content Discovery</span>
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+          {/* Badge - Responsive sizing */}
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 glass-effect rounded-full text-xs sm:text-sm font-medium text-blue-200 animate-pulse-slow">
+            <Sparkles size={14} className="sm:w-4 sm:h-4 text-blue-400" />
+            <span className="hidden xs:inline">AI-Powered Content Discovery</span>
+            <span className="xs:hidden">AI Discovery</span>
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full animate-pulse" />
           </div>
 
-          {/* Main Heading */}
-          <h1 className="font-black mb-4 sm:mb-6 text-balance text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl tracking-tight">
+          {/* Main Heading - Better fluid typography */}
+          <h1 className="font-black mb-4 sm:mb-6 text-balance text-fluid-4xl sm:text-fluid-5xl lg:text-fluid-6xl leading-tight tracking-tight">
             <span className="block text-white">Discover, Analyze &</span>
-            <span className="block text-blue-600 animate-gradient mt-1">
+            <span className="block text-blue-600 animate-gradient mt-1 sm:mt-2">
               <AnimatedCounterText />
             </span>
-            <span className="block text-white font-semibold opacity-90 mt-2 sm:mt-4 text-lg sm:text-xl md:text-2xl">with AI Intelligence</span>
+            <span className="block text-white font-semibold opacity-90 mt-2 sm:mt-4 text-fluid-lg sm:text-fluid-xl lg:text-fluid-2xl">with AI Intelligence</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-6 sm:mb-8 max-w-xl md:max-w-2xl mx-auto text-balance leading-relaxed px-2">
+          {/* Subtitle - Better responsive text */}
+          <p className="text-fluid-sm sm:text-fluid-base md:text-fluid-lg text-slate-300 mb-6 sm:mb-8 max-w-sm sm:max-w-xl lg:max-w-2xl mx-auto text-balance leading-relaxed px-1 sm:px-2">
             Transform any topic into organized, comprehensive knowledge with AI-powered analysis.
           </p>
 
-          {/* Search Interface */}
+          {/* Search Interface - Enhanced mobile layout */}
           <form onSubmit={handleSearch} className="mb-6 sm:mb-8">
-            <div className="relative max-w-sm sm:max-w-xl md:max-w-2xl mx-auto group">
+            <div className="relative max-w-xs sm:max-w-xl lg:max-w-2xl mx-auto group">
               <div className="absolute inset-0 gradient-primary rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
               
-              <div className="relative dark-glass-effect rounded-2xl p-2 shadow-2xl">
-                <div className="flex items-center">
-                  <div className="flex items-center pl-6 pr-4">
-                    <Search size={24} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
+              <div className="relative dark-glass-effect rounded-2xl p-1.5 sm:p-2 shadow-2xl">
+                {/* Mobile: Stack vertically, Desktop: Horizontal */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
+                  {/* Search Input Container */}
+                  <div className="flex items-center flex-1">
+                    <div className="flex items-center pl-4 sm:pl-6 pr-3 sm:pr-4">
+                      <Search size={20} className="sm:w-6 sm:h-6 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder={`Try "${placeholders[currentPlaceholder]}"...`}
+                      className="flex-1 bg-transparent text-white text-sm sm:text-base lg:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4 min-w-0 focus:ring-0"
+                      onFocus={() => setIsTyping(true)}
+                      onBlur={() => setIsTyping(false)}
+                    />
                   </div>
                   
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={`Try "${placeholders[currentPlaceholder]}"...`}
-                    className="flex-1 bg-transparent text-white text-base sm:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4 min-w-0"
-                    onFocus={() => setIsTyping(true)}
-                    onBlur={() => setIsTyping(false)}
-                  />
-                  
+                  {/* Search Button - Full width on mobile */}
                   <button
                     type="submit"
-                    className="button-premium gradient-primary text-white font-semibold px-5 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                    className="button-premium gradient-primary text-white font-semibold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto min-w-0 sm:min-w-[120px]"
                     disabled={!searchQuery.trim()}
                   >
-                    <span>{user ? 'Search' : 'Explore'}</span>
-                    <ArrowRight size={20} />
+                    <span className="truncate">{user ? 'Search' : 'Explore'}</span>
+                    <ArrowRight size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
                   </button>
                 </div>
               </div>
@@ -257,18 +263,21 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 w-full max-w-lg mx-auto">
+          {/* CTA Buttons - Better mobile layout */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 w-full max-w-sm sm:max-w-lg mx-auto px-4 sm:px-0">
             <button 
               onClick={scrollToNext}
-              className="button-premium gradient-primary text-white font-bold w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl text-sm sm:text-base group"
+              className="button-premium gradient-primary text-white font-bold w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl text-sm sm:text-base group min-h-[48px]"
             >
               <span>Start Exploring</span>
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </button>
 
-            <button className="hidden sm:flex button-premium glass-effect text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl items-center justify-center gap-2 hover:bg-white/20 transition-colors text-sm sm:text-base" onClick={() => window.location.href = 'https://www.youtube.com/@avgsoyamm'}>
-              <Play size={18} />
+            <button 
+              className="hidden sm:flex button-premium glass-effect text-white font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl items-center justify-center gap-2 hover:bg-white/20 transition-colors text-sm sm:text-base w-full sm:w-auto min-h-[48px]" 
+              onClick={() => window.location.href = 'https://www.youtube.com/@avgsoyamm'}
+            >
+              <Play size={18} className="flex-shrink-0" />
               <span>Watch Out</span>
             </button>
           </div>
@@ -276,12 +285,13 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Better mobile visibility */}
       <button
         onClick={scrollToNext}
-        className="hidden xs:block absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
+        className="hidden sm:block absolute bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce p-2 rounded-full hover:bg-white/10"
+        aria-label="Scroll to features section"
       >
-        <ChevronDown size={32} />
+        <ChevronDown size={28} className="lg:w-8 lg:h-8" />
       </button>
     </section>
   );

@@ -79,7 +79,7 @@ const FeatureCard = ({ feature, index, isHovered, onHover }) => {
 const StatCard = ({ stat, index }) => {
   return (
     <div className="text-center">
-      <div className="text-4xl font-black text-gradient mb-2">
+      <div className="text-fluid-3xl sm:text-fluid-4xl font-black text-gradient mb-2">
         {stat.value}
       </div>
       <div className="text-slate-300 font-medium">
@@ -156,12 +156,12 @@ const Features = () => {
               <span>Powerful Features</span>
             </div>
             
-            <h2 className="font-black text-white mb-5 sm:mb-6 text-3xl sm:text-4xl md:text-5xl leading-tight">
+            <h2 className="font-black text-white mb-5 sm:mb-6 text-fluid-3xl sm:text-fluid-4xl lg:text-fluid-5xl leading-tight">
               Everything You Need to
               <span className="block text-gradient mt-2">Master Any Topic</span>
             </h2>
             
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto text-balance px-1">
+            <p className="text-fluid-base sm:text-fluid-lg lg:text-fluid-xl text-slate-300 max-w-2xl sm:max-w-3xl mx-auto text-balance px-2 sm:px-1">
               Focused tools that help you search, structure, summarize, and retain the knowledge you find—without inflated claims.
             </p>
           </div>
@@ -189,13 +189,13 @@ const Features = () => {
           {/* Bottom CTA */}
           <div className="text-center mt-16 sm:mt-20">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4">
-              <button className="button-premium gradient-primary text-white font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-glow" onClick={() => window.location.href = '/main'}>
+              <button className="button-premium gradient-primary text-white font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-3 shadow-glow min-h-[48px] w-full sm:w-auto" onClick={() => window.location.href = '/main'}>
                 <span>Try All Features</span>
-                <Sparkles size={20} />
+                <Sparkles size={20} className="flex-shrink-0" />
               </button>
               
-              <span className="text-slate-400 text-sm">
-                Access Ai enables fearure right away.
+              <span className="text-slate-400 text-xs sm:text-sm text-center">
+                Access AI-enabled features right away.
               </span>
             </div>
           </div>

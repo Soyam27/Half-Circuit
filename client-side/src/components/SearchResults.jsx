@@ -202,10 +202,10 @@ const SearchResults = ({ results = [], query, isLoading = false }) => {
         <div className="mb-10 sm:mb-12">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
             <div>
-              <h2 className="font-black text-white mb-4 text-3xl sm:text-4xl md:text-5xl leading-tight">
+              <h2 className="font-black text-white mb-4 text-fluid-3xl sm:text-fluid-4xl lg:text-fluid-5xl leading-tight">
                 Search Results
                 {query && (
-                  <span className="block text-responsive-lg text-slate-300 font-normal mt-2">
+                  <span className="block text-fluid-base sm:text-fluid-lg text-slate-300 font-normal mt-2">
                     for "<span className="text-gradient">{query}</span>"
                   </span>
                 )}
