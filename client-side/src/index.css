@@ -66,11 +66,15 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
   font-family: 'Pixelify Sans', 'Inter', sans-serif;
   background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.12), transparent 60%),
               radial-gradient(circle at 80% 70%, rgba(168,85,247,0.12), transparent 65%),
@@ -525,13 +529,24 @@ input, textarea, select {
   .interactive-card { transform: none !important; }
   .interactive-card:hover { transform: translateY(-4px) !important; }
 
-  /* Prevent mobile white flickers */
-  body { 
+  /* Prevent mobile white flickers and ensure full coverage */
+  html, body { 
     -webkit-overflow-scrolling: touch;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-attachment: local; /* Override fixed attachment on mobile */
   }
   
   /* Ensure solid backgrounds on mobile without conflicting positioning */
   .mobile-nav-overlay {
     background-color: #0f172a !important;
+  }
+
+  /* Ensure root element covers full viewport */
+  #root {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: linear-gradient(115deg, #020617 0%, #0f172a 45%, #1e293b 70%, #020617 100%);
   }
 }
