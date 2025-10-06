@@ -195,7 +195,7 @@ const Features = () => {
               </button>
               
               <span className="text-slate-400 text-sm">
-                No credit card required • Free 14-day trial
+                Access Ai enables fearure right away.
               </span>
             </div>
           </div>

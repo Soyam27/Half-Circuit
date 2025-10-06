@@ -266,10 +266,10 @@ const Hero = () => {
               <span>Start Exploring</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            
-            <button className="hidden sm:flex button-premium glass-effect text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl items-center justify-center gap-2 hover:bg-white/20 transition-colors text-sm sm:text-base" onClick={() => navigate('/main')}>
+
+            <button className="hidden sm:flex button-premium glass-effect text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl items-center justify-center gap-2 hover:bg-white/20 transition-colors text-sm sm:text-base" onClick={() => window.location.href = 'https://www.youtube.com/@avgsoyamm'}>
               <Play size={18} />
-              <span>Try All Features</span>
+              <span>Watch Out</span>
             </button>
           </div>
 

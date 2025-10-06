@@ -80,6 +80,9 @@ body {
   color: var(--surface-100);
 }
 
+/* Light theme overrides */
+/* (Light theme removed) */
+
 /* -------------------------------------------------- */
 /*  Custom Utility Layer (migrated from old App.css)  */
 /*  Keep this minimal & valid; rely on Tailwind first */

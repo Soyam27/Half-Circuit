@@ -59,7 +59,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 h-full mr-18">
+          <div className="hidden md:flex items-center gap-8 h-full mr-32">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -88,18 +88,23 @@ const Navbar = () => {
             {user ? (
               <>
                 <button
-                  className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
-                  aria-label="Settings"
-                >
-                  <Settings size={20} />
-                </button>
-                <button
                   onClick={() => setUserMenu(v => !v)}
-                  className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center ring-2 ring-transparent hover:ring-blue-400/40 transition"
+                  className="w-10 h-10 rounded-full flex items-center justify-center ring-2 ring-transparent hover:ring-blue-400/40 transition overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500"
+                  title={user.displayName || user.email}
                 >
-                  <span className="text-xs font-semibold text-white">
-                    {user.displayName?.[0]?.toUpperCase() || <User size={16} className="text-white" />}
-                  </span>
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="Profile"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                      onError={(e) => { e.currentTarget.style.display='none'; }}
+                    />
+                  ) : (
+                    <span className="text-xs font-semibold text-white">
+                      {user.displayName?.[0]?.toUpperCase() || <User size={16} className="text-white" />}
+                    </span>
+                  )}
                 </button>
                 {userMenu && (
                   <div className="absolute right-0 top-14 w-64 glass-effect-strong rounded-xl p-4 border border-slate-700/50 shadow-xl z-50">

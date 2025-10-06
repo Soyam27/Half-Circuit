@@ -149,7 +149,7 @@ const Dashboard = () => {
 
   return (
     <div className="container-premium pt-40 pb-12">
-      <div className="max-w-7xl mx-auto mt-30">
+      <div className="max-w-7xl mx-auto mb-10 mt-30">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-black text-white mb-4">

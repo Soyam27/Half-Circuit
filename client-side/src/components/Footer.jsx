@@ -43,10 +43,10 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Github, href: '#github', label: 'GitHub' },
-    { icon: Twitter, href: '#twitter', label: 'Twitter' },
-    { icon: Linkedin, href: '#linkedin', label: 'LinkedIn' },
-    { icon: Mail, href: '#email', label: 'Email' }
+    { icon: Github, href: 'https://github.com/Soyam27', label: 'GitHub' },
+    { icon: Twitter, href: 'https://www.linkedin.com/in/soyam-paul-721b18326/', label: 'Twitter' },
+    { icon: Linkedin, href: 'https://x.com/soyam_27', label: 'LinkedIn' },
+    { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&to=`soyampaul34@gmail.com', label: 'Email' }
   ];
 
   return (
@@ -82,11 +82,11 @@ const Footer = () => {
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-3 text-slate-400">
                     <Mail size={18} />
-                    <span>hello@halfcircuit.com</span>
+                    <span>soyampaul34@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3 text-slate-400">
                     <MapPin size={18} />
-                    <span>San Francisco, CA</span>
+                    <span>West Bengal, India</span>
                   </div>
                 </div>
 
@@ -141,7 +141,7 @@ const Footer = () => {
                 <p className="flex items-center gap-2">
                   © 2025 Half Circuit. Made with 
                   <Heart size={16} className="text-red-500" />
-                  in San Francisco
+                  by Soyam Paul.
                 </p>
               </div>
 
@@ -149,11 +149,11 @@ const Footer = () => {
               <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6 text-slate-500 text-sm">
                 <div className="flex items-center gap-2">
                   <Zap size={16} />
-                  <span>React</span>
+                  <span>Quick</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Brain size={16} />
-                  <span>FastAPI</span>
+                  <span>Ai enabled</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield size={16} />
@@ -161,7 +161,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Globe size={16} />
-                  <span>Global CDN</span>
+                  <span>Global</span>
                 </div>
               </div>
             </div>
