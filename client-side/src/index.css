@@ -85,18 +85,11 @@ body {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  transform: translateZ(0); /* prevent subpixel seam on some GPUs */
-  backface-visibility: hidden;
 }
 
 /* App viewport height utility using dynamic --vh (visual viewport) */
 .min-h-app {
-  min-height: calc(var(--app-vh, var(--vh, 1vh)) * 100);
-}
-
-/* Slight overshoot variant if seam persists; apply class `min-h-app-overshoot` temporarily */
-.min-h-app-overshoot {
-  min-height: calc(var(--app-vh, var(--vh, 1vh)) * 100 + 6px);
+  min-height: calc(var(--app-vh, var(--vh, 1vh)) * 100); /* layered fallback */
 }
 
 /* Safe area padding utility (apply to wrappers if content touches edges) */
@@ -531,26 +524,4 @@ input, textarea, select {
   h1 { font-size: clamp(1.85rem, 7.2vw, 2.35rem); }
   h2 { font-size: clamp(1.4rem, 6.2vw, 1.8rem); }
   h3 { font-size: clamp(1.2rem, 5.4vw, 1.45rem); }
-  body { 
-    animation: none !important; /* static background prevents gradient shift line */
-    background-size: cover; /* stable rasterization */
-    background-attachment: scroll; /* avoid fixed artifacts */
-  }
-}
-
-/* Ultra small phones (<360px) */
-@media (max-width: 360px) {
-  .xs\:hide-heavy { display: none !important; }
-  .xs\:text-tight { letter-spacing: -0.5px; }
-  .xs\:reduce-pad { padding-left: .5rem !important; padding-right: .5rem !important; }
-}
-
-/* Large desktop enhancements */
-@media (min-width: 1440px) {
-  .lgdesk\:w-wide { max-width: 1600px; }
-}
-
-/* Slightly larger breakpoint to catch mid-size phones */
-@media (max-width: 600px) {
-  body { animation: none !important; }
 }

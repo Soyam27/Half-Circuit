@@ -157,11 +157,7 @@ const Hero = () => {
   };
 
   return (
-  <section
-    className="relative min-h-app flex items-center justify-center overflow-hidden px-3 xs:px-4 sm:px-6 scroll-mt-24"
-    aria-labelledby="hero-heading"
-    role="region"
-  >
+  <section className="relative min-h-app flex items-center justify-center overflow-hidden px-4 sm:px-6 scroll-mt-24">
 
       {/* Large Background Blob */}
       <div className="hero-bg-blob animate-blob-float animate-blob-pulse" style={{animationDelay: '0s, 1s'}} />
@@ -193,31 +189,28 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1
-            id="hero-heading"
-            className="font-black mb-4 sm:mb-6 text-balance leading-tight tracking-tight text-[clamp(2rem,5.8vw,3.75rem)] md:text-[clamp(2.75rem,4.4vw,4.25rem)] lg:text-[clamp(3.25rem,3.8vw,4.5rem)]"
-          >
+          <h1 className="font-black mb-4 sm:mb-6 text-balance text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl tracking-tight">
             <span className="block text-white">Discover, Analyze &</span>
-            <span className="block text-blue-600 animate-gradient mt-1 min-h-[1.2em]" aria-live="polite">
+            <span className="block text-blue-600 animate-gradient mt-1">
               <AnimatedCounterText />
             </span>
-            <span className="block text-white font-semibold opacity-90 mt-2 sm:mt-4 text-base sm:text-lg md:text-xl lg:text-2xl">with AI Intelligence</span>
+            <span className="block text-white font-semibold opacity-90 mt-2 sm:mt-4 text-lg sm:text-xl md:text-2xl">with AI Intelligence</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-[0.85rem] sm:text-sm md:text-base lg:text-lg text-slate-300 mb-6 sm:mb-8 max-w-xl md:max-w-2xl mx-auto text-balance leading-relaxed px-1 sm:px-2">
+          <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-6 sm:mb-8 max-w-xl md:max-w-2xl mx-auto text-balance leading-relaxed px-2">
             Transform any topic into organized, comprehensive knowledge with AI-powered analysis.
           </p>
 
           {/* Search Interface */}
-          <form onSubmit={handleSearch} className="mb-6 sm:mb-8" aria-label="Search content">
-            <div className="relative max-w-xs xs:max-w-sm sm:max-w-xl md:max-w-2xl mx-auto group">
+          <form onSubmit={handleSearch} className="mb-6 sm:mb-8">
+            <div className="relative max-w-sm sm:max-w-xl md:max-w-2xl mx-auto group">
               <div className="absolute inset-0 gradient-primary rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
               
-              <div className="relative dark-glass-effect rounded-2xl p-1.5 sm:p-2 shadow-2xl">
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <div className="flex items-center pl-4 pr-2 sm:pl-6 sm:pr-4">
-                    <Search size={20} className="sm:size-6 text-slate-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+              <div className="relative dark-glass-effect rounded-2xl p-2 shadow-2xl">
+                <div className="flex items-center">
+                  <div className="flex items-center pl-6 pr-4">
+                    <Search size={24} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                   </div>
                   
                   <input
@@ -225,20 +218,18 @@ const Hero = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={`Try "${placeholders[currentPlaceholder]}"...`}
-                    className="flex-1 bg-transparent text-white text-sm sm:text-base md:text-lg placeholder-slate-400 border-0 outline-0 py-2.5 sm:py-3 md:py-4 pr-1 sm:pr-2 md:pr-4 min-w-0"
+                    className="flex-1 bg-transparent text-white text-base sm:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4 min-w-0"
                     onFocus={() => setIsTyping(true)}
                     onBlur={() => setIsTyping(false)}
-                    aria-label="Search query"
                   />
                   
                   <button
                     type="submit"
-                    className="button-premium gradient-primary text-white font-semibold px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl flex items-center gap-1.5 sm:gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm md:text-base"
+                    className="button-premium gradient-primary text-white font-semibold px-5 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                     disabled={!searchQuery.trim()}
-                    aria-label={user ? 'Search' : 'Explore anonymously'}
                   >
                     <span>{user ? 'Search' : 'Explore'}</span>
-                    <ArrowRight className="size-4 sm:size-5" />
+                    <ArrowRight size={20} />
                   </button>
                 </div>
               </div>
@@ -267,17 +258,17 @@ const Hero = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 w-full max-w-md sm:max-w-lg mx-auto px-1">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 w-full max-w-lg mx-auto">
             <button 
               onClick={scrollToNext}
-              className="button-premium gradient-primary text-white font-bold w-full sm:w-auto px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl text-sm md:text-base group"
+              className="button-premium gradient-primary text-white font-bold w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl text-sm sm:text-base group"
             >
               <span>Start Exploring</span>
-              <ArrowRight className="size-4 sm:size-5 md:size-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <button className="hidden sm:flex button-premium glass-effect text-white font-semibold px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl items-center justify-center gap-2 hover:bg-white/20 transition-colors text-sm md:text-base" onClick={() => window.location.href = 'https://www.youtube.com/@avgsoyamm'}>
-              <Play className="size-4 sm:size-5" />
+            <button className="hidden sm:flex button-premium glass-effect text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl items-center justify-center gap-2 hover:bg-white/20 transition-colors text-sm sm:text-base" onClick={() => window.location.href = 'https://www.youtube.com/@avgsoyamm'}>
+              <Play size={18} />
               <span>Watch Out</span>
             </button>
           </div>
@@ -288,10 +279,9 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <button
         onClick={scrollToNext}
-        className="hidden xs:block absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
-        aria-label="Scroll to features section"
+        className="hidden xs:block absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
       >
-        <ChevronDown className="size-6 sm:size-8" />
+        <ChevronDown size={32} />
       </button>
     </section>
   );
