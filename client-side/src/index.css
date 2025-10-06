@@ -470,11 +470,27 @@ body {
   outline-offset: 2px;
 }
 
-/* Input focus styles - custom ring instead of blue outline */
+/* Input focus styles - completely remove all blue borders and outlines */
+input, textarea, select {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input:focus, textarea:focus, select:focus {
   outline: none !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3), 0 0 0 4px rgba(59, 130, 246, 0.1);
-  border-color: var(--primary-500);
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:active, textarea:active, select:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Button focus styles */

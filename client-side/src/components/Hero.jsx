@@ -203,18 +203,18 @@ const Hero = () => {
             Transform any topic into organized, comprehensive knowledge with AI-powered analysis.
           </p>
 
-          {/* Search Interface - Enhanced mobile layout */}
-          <form onSubmit={handleSearch} className="mb-6 sm:mb-8">
-            <div className="relative max-w-xs sm:max-w-xl lg:max-w-2xl mx-auto group">
+          {/* Search Interface - Fully responsive layout */}
+          <form onSubmit={handleSearch} className="mb-6 sm:mb-8 px-4 sm:px-0">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl mx-auto group">
               <div className="absolute inset-0 gradient-primary rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
               
-              <div className="relative dark-glass-effect rounded-2xl p-1.5 sm:p-2 shadow-2xl">
-                {/* Mobile: Stack vertically, Desktop: Horizontal */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
+              <div className="relative dark-glass-effect rounded-xl sm:rounded-2xl p-1.5 sm:p-2 shadow-2xl">
+                {/* Responsive horizontal layout */}
+                <div className="flex items-center gap-0">
                   {/* Search Input Container */}
-                  <div className="flex items-center flex-1">
-                    <div className="flex items-center pl-4 sm:pl-6 pr-3 sm:pr-4">
-                      <Search size={20} className="sm:w-6 sm:h-6 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                  <div className="flex items-center flex-1 min-w-0">
+                    <div className="flex items-center pl-3 sm:pl-4 md:pl-6 pr-2 sm:pr-3 md:pr-4">
+                      <Search size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-slate-400 group-hover:text-blue-400 transition-colors" />
                     </div>
                     
                     <input
@@ -222,20 +222,22 @@ const Hero = () => {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={`Try "${placeholders[currentPlaceholder]}"...`}
-                      className="flex-1 bg-transparent text-white text-sm sm:text-base lg:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4 min-w-0 focus:ring-0"
+                      className="flex-1 bg-transparent text-white text-sm sm:text-base md:text-lg placeholder-slate-400 border-none outline-none py-3 sm:py-3.5 md:py-4 pr-2 sm:pr-3 md:pr-4 min-w-0"
                       onFocus={() => setIsTyping(true)}
                       onBlur={() => setIsTyping(false)}
+                      style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
                     />
                   </div>
                   
-                  {/* Search Button - Full width on mobile */}
+                  {/* Search Button - Responsive sizing */}
                   <button
                     type="submit"
-                    className="button-premium gradient-primary text-white font-semibold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto min-w-0 sm:min-w-[120px]"
+                    className="button-premium gradient-primary text-white font-semibold px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-3.5 md:py-4 rounded-lg sm:rounded-xl flex items-center justify-center gap-1 sm:gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm md:text-base flex-shrink-0"
                     disabled={!searchQuery.trim()}
                   >
-                    <span className="truncate">{user ? 'Search' : 'Explore'}</span>
-                    <ArrowRight size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="hidden sm:inline">{user ? 'Search' : 'Explore'}</span>
+                    <Search size={18} className="sm:hidden" />
+                    <ArrowRight size={16} className="hidden sm:block sm:w-5 sm:h-5" />
                   </button>
                 </div>
               </div>
