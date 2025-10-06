@@ -21,7 +21,7 @@ const Skeleton = ({ className = '' }) => (
 );
 
 const ContentSkeleton = () => (
-  <div className="container-premium pt-24 pb-12">
+    <div className="container-premium pt-24 pb-12">
     <div className="max-w-4xl mb-10 pt-30 mx-auto space-y-6">
       {/* Back button skeleton */}
       <Skeleton className="h-5 w-40" />
@@ -273,7 +273,7 @@ const ContentDetail = () => {
   }
 
   return (
-    <div className="container-premium pt-40 pb-12">
+    <div className="container-premium pt-36 sm:pt-40 pb-12">
       <div className="max-w-4xl mb-10 pt-30  mx-auto">
         {/* Back Button - Fixed positioning */}
         <div className="mb-6">
@@ -286,7 +286,7 @@ const ContentDetail = () => {
         {/* Header */}
         <div className="mb-8">
           
-          <div className="glass-effect p-6 rounded-xl">
+          <div className="glass-effect p-5 sm:p-6 rounded-xl">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
                 <img 
@@ -302,7 +302,7 @@ const ContentDetail = () => {
               </div>
               
               <div className="flex-1">
-                <h1 className="text-3xl font-bold text-white mb-2">{content.title}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-snug">{content.title}</h1>
                 <div className="flex items-center gap-4 text-sm text-slate-400 mb-4">
                   <span>{content.domain}</span>
                   <span className="flex items-center gap-1">
@@ -340,7 +340,7 @@ const ContentDetail = () => {
         </div>
 
         {/* Table of Contents */}
-        <div className="glass-effect p-6 rounded-xl mb-8">
+        <div className="glass-effect p-5 sm:p-6 rounded-xl mb-8">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
             <BookOpen size={20} />
             Table of Contents
@@ -376,8 +376,8 @@ const ContentDetail = () => {
         {/* Content Sections */}
         <div className="space-y-8">
           {content.sections.map((section) => (
-            <div key={section.id} className="glass-effect p-6 rounded-xl">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <div key={section.id} className="glass-effect p-5 sm:p-6 rounded-xl">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6 flex items-center gap-3">
                 <span className="text-gradient">{section.title}</span>
               </h2>
               
@@ -387,12 +387,12 @@ const ContentDetail = () => {
                   const isExpanded = expandedSubsections[subsectionKey];
                   
                   return (
-                    <div key={subsection.id} id={subsectionKey} className="border-l-2 border-blue-500/30 pl-6">
+                    <div key={subsection.id} id={subsectionKey} className="border-l-2 border-blue-500/30 pl-4 sm:pl-6">
                       <button
                         onClick={() => toggleSubsection(section.id, subsection.id)}
                         className="flex items-center justify-between w-full text-left mb-4 group"
                       >
-                        <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">
+                        <h3 className="text-lg sm:text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">
                           {subsection.title}
                         </h3>
                         <div className="flex items-center gap-2">

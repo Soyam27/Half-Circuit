@@ -192,14 +192,14 @@ const MainPage = () => {
   };
 
   return (
-    <div className="container-premium pt-40 pb-12">
+    <div className="container-premium pt-36 sm:pt-40 pb-12">
       <div className="max-w-6xl mx-auto mt-30">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-black text-white mb-4">
+          <h1 className="text-3xl sm:text-4xl font-black text-white mb-4">
             <span className="text-gradient">Search & Discover</span>
           </h1>
-          <p className="text-slate-300 text-lg">
+          <p className="text-slate-300 text-base sm:text-lg">
             Find comprehensive information on any topic
           </p>
         </div>
@@ -210,26 +210,24 @@ const MainPage = () => {
             <div className="absolute inset-0 gradient-primary rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
             
             <div className="relative dark-glass-effect rounded-2xl p-2 shadow-2xl">
-              <div className="flex items-center">
-                <div className="flex items-center pl-6 pr-4">
-                  <Search size={24} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
+              <div className="flex items-center gap-1 sm:gap-0">
+                <div className="flex items-center pl-4 sm:pl-6 pr-2 sm:pr-4">
+                  <Search size={22} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                 </div>
-                
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Enter your search query..."
-                  className="flex-1 bg-transparent text-white text-lg placeholder-slate-400 border-0 outline-0 py-4 pr-4"
+                  className="flex-1 bg-transparent text-white text-base sm:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4 min-w-0"
                 />
-                
                 <button
                   type="submit"
-                  className="button-premium gradient-primary text-white font-semibold px-8 py-4 rounded-xl flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="button-premium gradient-primary text-white font-semibold px-5 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                   disabled={!searchQuery.trim() || isLoading}
                 >
                   <span>{isLoading ? 'Searching...' : 'Search'}</span>
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} className="sm:size-[20px]" />
                 </button>
               </div>
             </div>
@@ -288,7 +286,7 @@ const MainPage = () => {
             ) : (
               <div className="grid grid-cols-1 gap-6">
                 {searchResults.map((result) => (
-                  <div key={result.id} className="glass-effect p-6 rounded-xl hover:bg-white/5 transition-all group">
+                  <div key={result.id} className="glass-effect p-5 sm:p-6 rounded-xl hover:bg-white/5 transition-all group">
                     <div className="flex items-start gap-4">
                       {/* Favicon */}
                       <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -307,7 +305,7 @@ const MainPage = () => {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
+                          <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
                             {result.title}
                           </h3>
                           <div className="flex items-center gap-2 ml-4">
@@ -334,11 +332,11 @@ const MainPage = () => {
                           </div>
                         </div>
 
-                        <p className="text-slate-300 mb-3 line-clamp-2">
+                        <p className="text-slate-300 mb-3 line-clamp-2 text-sm sm:text-base">
                           {result.description}
                         </p>
 
-                        <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-slate-500 mb-4">
                           <span className="flex items-center gap-1">
                             <Globe size={12} />
                             {result.domain}
@@ -352,7 +350,7 @@ const MainPage = () => {
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-3">
                           <Link 
                             to={`/content/${result.id}?url=${encodeURIComponent(result.url)}`}
                             className="button-premium gradient-primary text-white font-medium px-6 py-2 rounded-lg flex items-center gap-2 hover:shadow-lg transition-all"

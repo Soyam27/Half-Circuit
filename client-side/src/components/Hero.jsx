@@ -157,7 +157,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 scroll-mt-24">
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 scroll-mt-24">
 
       {/* Large Background Blob */}
       <div className="hero-bg-blob animate-blob-float animate-blob-pulse" style={{animationDelay: '0s, 1s'}} />
@@ -189,7 +189,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-black mb-4 sm:mb-6 text-balance text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="font-black mb-4 sm:mb-6 text-balance text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl tracking-tight">
             <span className="block text-white">Discover, Analyze &</span>
             <span className="block text-blue-600 animate-gradient mt-1">
               <AnimatedCounterText />
@@ -218,7 +218,7 @@ const Hero = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={`Try "${placeholders[currentPlaceholder]}"...`}
-                    className="flex-1 bg-transparent text-white text-base sm:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4"
+                    className="flex-1 bg-transparent text-white text-base sm:text-lg placeholder-slate-400 border-0 outline-0 py-3 sm:py-4 pr-2 sm:pr-4 min-w-0"
                     onFocus={() => setIsTyping(true)}
                     onBlur={() => setIsTyping(false)}
                   />
@@ -279,7 +279,7 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <button
         onClick={scrollToNext}
-        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
+        className="hidden xs:block absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
       >
         <ChevronDown size={32} />
       </button>

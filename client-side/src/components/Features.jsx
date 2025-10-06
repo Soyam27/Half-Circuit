@@ -25,16 +25,16 @@ const FeatureCard = ({ feature, index, isHovered, onHover }) => {
 
   return (
     <div
-      className={`group interactive-card glass-effect rounded-2xl p-8 cursor-pointer transition-all duration-500 ${
+      className={`group interactive-card glass-effect rounded-2xl p-6 sm:p-8 cursor-pointer transition-all duration-500 ${
         isHovered ? 'shadow-xl scale-105' : ''
       }`}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
     >
       {/* Icon Container */}
-      <div className={`relative mb-6 w-16 h-16 rounded-2xl bg-gradient-to-r ${gradients[index % gradients.length]} p-1`}>
+      <div className={`relative mb-6 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-r ${gradients[index % gradients.length]} p-1`}>
         <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center">
-          <feature.icon size={28} className="text-white" />
+          <feature.icon size={24} className="sm:size-[28px] text-white" />
         </div>
         
         {/* Floating Badge */}
@@ -46,16 +46,16 @@ const FeatureCard = ({ feature, index, isHovered, onHover }) => {
       </div>
 
       {/* Content */}
-      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-gradient transition-all">
+      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-gradient transition-all">
         {feature.title}
       </h3>
       
-      <p className="text-slate-300 text-base leading-relaxed mb-6">
+      <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">
         {feature.description}
       </p>
 
       {/* Features List */}
-      <div className="space-y-2 mb-6">
+      <div className="space-y-2 mb-5 sm:mb-6">
         {feature.highlights.map((highlight, idx) => (
           <div key={idx} className="flex items-center gap-3 text-sm text-slate-400">
             <CheckCircle size={16} className={`text-gradient bg-gradient-to-r ${gradients[index % gradients.length]} rounded-full`} />
@@ -150,13 +150,13 @@ const Features = () => {
   <div className="container-premium relative z-10">
           
           {/* Header */}
-          <div className="text-center mb-16 sm:mb-20">
+          <div className="text-center mb-14 sm:mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass-effect rounded-full text-sm font-medium text-purple-200">
               <Target size={16} className="text-purple-400" />
               <span>Powerful Features</span>
             </div>
             
-            <h2 className="font-black text-white mb-6 text-3xl sm:text-4xl md:text-5xl leading-tight">
+            <h2 className="font-black text-white mb-5 sm:mb-6 text-3xl sm:text-4xl md:text-5xl leading-tight">
               Everything You Need to
               <span className="block text-gradient mt-2">Master Any Topic</span>
             </h2>
@@ -167,14 +167,14 @@ const Features = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20 p-5 sm:p-8 glass-effect rounded-2xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mb-14 sm:mb-20 p-4 sm:p-8 glass-effect rounded-2xl">
             {stats.map((stat, index) => (
               <StatCard key={index} stat={stat} index={index} />
             ))}
           </div>
 
           {/* Features Grid */}
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:gap-8 sm:grid-cols-2 xl:grid-cols-3">
             {featuresData.map((feature, index) => (
               <FeatureCard
                 key={index}
@@ -187,7 +187,7 @@ const Features = () => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-20">
+          <div className="text-center mt-16 sm:mt-20">
             <div className="inline-flex flex-col sm:flex-row items-center gap-4">
               <button className="button-premium gradient-primary text-white font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-glow" onClick={() => window.location.href = '/main'}>
                 <span>Try All Features</span>

@@ -37,13 +37,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 backdrop-blur-md bg-slate-900/60 ${
+      className={`fixed top-0 w-full z-50 transition-colors duration-300 backdrop-blur-md ${
         scrolled ? 'shadow-md' : 'shadow-none'
-      }`}
-      style={{ height: '80px' }}
+      } ${open ? 'bg-slate-900/90' : 'bg-slate-900/65'}`}
     >
-      <div className="container-premium h-full">
-        <div className="flex justify-between items-center h-full py-4">
+      <div className="container-premium">
+        <div className="flex justify-between items-center h-20 py-3">
           
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -59,7 +58,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 h-full mr-32">
+          <div className="hidden md:flex items-center gap-8 h-full mr-20 xl:mr-32">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -132,24 +131,27 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
+            onClick={() => setOpen(prev => !prev)}
+            className="md:hidden p-2 text-slate-400 hover:text-white transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation (auto height inside nav) */}
       {open && (
-        <div className="md:hidden ">
-          <div className="px-4 pt-2 pb-3 space-y-1 glass-effect border-t border-slate-700/50">
+        <div id="mobile-nav" className="md:hidden">
+          <div className="px-4 pt-2 pb-4 space-y-1 glass-effect border-t border-slate-700/50 shadow-lg">
             {navItems.filter(item => !(item.protected && !user)).map((item) => (
               <Link
                 key={item.name}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors  ${
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${
                   isActive(item.to)
                     ? 'text-white bg-white/10'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'

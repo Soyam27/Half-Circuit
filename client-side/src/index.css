@@ -78,6 +78,7 @@ body {
   background-size: 200% 200%;
   animation: globalPan 40s linear infinite;
   color: var(--surface-100);
+  overflow-x: hidden; /* Prevent horizontal scroll on small devices */
 }
 
 /* Light theme overrides */
@@ -496,4 +497,30 @@ input, textarea, select {
 /* Adjust letter spacing for better pixel font readability */
 * {
   font-family: 'Pixelify Sans', 'Inter', sans-serif;
+}
+
+/* ---------------------------------- */
+/* Mobile Responsive Adjustments      */
+/* ---------------------------------- */
+@media (max-width: 480px) {
+  /* Reduce default container side padding slightly on very small screens */
+  .container-premium { padding-left: 0.85rem; padding-right: 0.85rem; }
+
+  /* Hide heavy decorative blobs for performance & layout clarity */
+  .hero-blob, .hero-bg-blob { display: none !important; }
+
+  /* Slightly reduce glass padding defaults when utility classes not overridden */
+  .glass-effect { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+
+  /* Headings scale down a bit more aggressively */
+  h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); line-height: 1.15; }
+  h2 { font-size: clamp(1.35rem, 6vw, 1.75rem); line-height: 1.2; }
+  h3 { font-size: clamp(1.15rem, 5.2vw, 1.35rem); }
+
+  /* Improve readability for long continuous strings */
+  p, li { overflow-wrap: anywhere; }
+
+  /* Ensure interactive cards don't scale too large */
+  .interactive-card { transform: none !important; }
+  .interactive-card:hover { transform: translateY(-4px) !important; }
 }
