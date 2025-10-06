@@ -87,6 +87,28 @@ body {
   position: relative;
 }
 
+/* Stable hero height to prevent jump on mobile when address bar hides/shows */
+.hero-stable {
+  min-height: calc(var(--hero-stable, var(--app-vh, var(--vh, 1vh))) * 100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  contain: layout paint style; /* isolate for performance */
+}
+
+@media (max-width: 640px) {
+  /* Reduce heavy effects on mobile to cut jank */
+  .hero-stable .hero-blob,
+  .hero-stable .hero-bg-blob { display: none !important; }
+  .hero-stable [class*="animate-blob"] { animation: none !important; }
+  .hero-stable .glass-effect,
+  .hero-stable .dark-glass-effect,
+  .hero-stable .glass-effect-ultra { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .hero-stable { will-change: initial; }
+}
+
 /* App viewport height utility using dynamic --vh (visual viewport) */
 .min-h-app {
   min-height: calc(var(--app-vh, var(--vh, 1vh)) * 100); /* layered fallback */
@@ -95,6 +117,29 @@ body {
 /* Safe area padding utility (apply to wrappers if content touches edges) */
 .pa-safe {
   padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
+/* Hide scrollbar (visual only; keeps scroll functionality) */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;    /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome/Safari */
+}
+
+/* Mobile-only: hide scrollbar globally on small viewports */
+@media (max-width: 640px) {
+  html, body {
+    -ms-overflow-style: none; /* IE / Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;            /* WebKit */
+  }
+  /* Optional: prevent overscroll glow / bounce from revealing any track */
+  body { overscroll-behavior: contain; }
 }
 
 /* Light theme overrides */

@@ -20,6 +20,11 @@ const scheduleVh = () => {
 };
 
 setVh();
+// Freeze hero height on initial paint to prevent jump when URL bar collapses
+if (!document.documentElement.style.getPropertyValue('--hero-stable')) {
+  const baseHero = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--hero-stable', `${baseHero}px`);
+}
 window.addEventListener('resize', scheduleVh, { passive: true });
 window.addEventListener('orientationchange', () => setTimeout(setVh, 300));
 if (window.visualViewport) {

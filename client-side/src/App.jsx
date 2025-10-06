@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import ScrollBarToggler from './components/ScrollBarToggler';
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -30,6 +31,7 @@ function App() {
   <div className="min-h-app overflow-x-hidden relative" style={{fontFamily: "'Pixelify Sans', 'Inter', sans-serif"}}>
         {/* Scroll to top on route change */}
         <ScrollToTop />
+  <ScrollBarToggler />
         
         {/* Global Continuous Background */}
         <div className="fixed inset-0 -z-10 bg-slate-950">
