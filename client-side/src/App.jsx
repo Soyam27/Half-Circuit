@@ -11,7 +11,7 @@ import SignIn from './pages/SignIn';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 
-
+// Scroll to top component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
