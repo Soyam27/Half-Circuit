@@ -24,7 +24,7 @@ load_dotenv()
 app = FastAPI()
 
 frontend_origin = os.getenv("FRONTEND_ORIGIN")
-origins = [o for o in [frontend_origin, "http://localhost:5173", "http://127.0.0.1:3000","https://zenobia-sublunated-eighthly.ngrok-free.dev"] if o]
+origins = [o for o in [frontend_origin,"https://half-circuit.vercel.app" ,"http://localhost:5173", "http://127.0.0.1:3000","https://zenobia-sublunated-eighthly.ngrok-free.dev"] if o]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
