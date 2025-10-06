@@ -265,7 +265,7 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* CTA Buttons - Better mobile layout */}
+         
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 w-full max-w-sm sm:max-w-lg mx-auto px-4 sm:px-0">
             <button 
               onClick={scrollToNext}
@@ -287,7 +287,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - Better mobile visibility */}
+    
       <button
         onClick={scrollToNext}
         className="hidden sm:block absolute bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce p-2 rounded-full hover:bg-white/10"
