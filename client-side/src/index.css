@@ -538,6 +538,18 @@ input, textarea, select {
   }
 }
 
+/* Ultra small phones (<360px) */
+@media (max-width: 360px) {
+  .xs\:hide-heavy { display: none !important; }
+  .xs\:text-tight { letter-spacing: -0.5px; }
+  .xs\:reduce-pad { padding-left: .5rem !important; padding-right: .5rem !important; }
+}
+
+/* Large desktop enhancements */
+@media (min-width: 1440px) {
+  .lgdesk\:w-wide { max-width: 1600px; }
+}
+
 /* Slightly larger breakpoint to catch mid-size phones */
 @media (max-width: 600px) {
   body { animation: none !important; }
