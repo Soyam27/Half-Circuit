@@ -536,10 +536,11 @@ input, textarea, select {
     background-color: #0f172a !important;
   }
 
-  /* Force body to cover viewport properly on mobile */
+  /* Mobile viewport fix - add padding to body to cover white space */
   body {
     min-height: 100vh !important;
     min-height: 100svh !important;
+    padding-bottom: 60px !important; /* Extra padding to cover white gap */
   }
 
   /* Ensure main app container covers full height */
@@ -551,6 +552,12 @@ input, textarea, select {
   /* Force all main page containers to fill viewport */
   .min-h-screen,
   .min-h-\[100dvh\] {
-    min-height: 100svh !important;
+    min-height: calc(100svh + 60px) !important; /* Extend beyond viewport */
+  }
+
+  /* Ensure footer extends below fold on mobile */
+  footer {
+    margin-bottom: -60px !important;
+    padding-bottom: 80px !important;
   }
 }

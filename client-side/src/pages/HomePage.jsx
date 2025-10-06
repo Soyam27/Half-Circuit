@@ -12,10 +12,12 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-b from-transparent to-slate-950">
       <Hero onSearch={handleSearch} />
       <Features />
-    </>
+      {/* Mobile bottom spacer to prevent white gap */}
+      <div className="h-20 bg-slate-950 md:hidden" />
+    </div>
   );
 };
 
