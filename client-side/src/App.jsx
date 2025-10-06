@@ -27,12 +27,12 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-      <div className="min-h-screen overflow-x-hidden relative" style={{fontFamily: "'Pixelify Sans', 'Inter', sans-serif"}}>
+      <div className="min-h-[100dvh] overflow-x-hidden relative bg-slate-950" style={{fontFamily: "'Pixelify Sans', 'Inter', sans-serif"}}>
         {/* Scroll to top on route change */}
         <ScrollToTop />
         
         {/* Global Continuous Background */}
-        <div className="fixed inset-0 -z-10">
+        <div className="fixed inset-0 -z-10 bg-slate-950">
           {/* Base animated gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 animate-bgPan bg-noise" />
           

@@ -536,16 +536,21 @@ input, textarea, select {
     background-color: #0f172a !important;
   }
 
-  /* Simple fix for white line at bottom */
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background: #020617;
-    z-index: -1;
-    pointer-events: none;
+  /* Force body to cover viewport properly on mobile */
+  body {
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+  }
+
+  /* Ensure main app container covers full height */
+  #root {
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+  }
+
+  /* Force all main page containers to fill viewport */
+  .min-h-screen,
+  .min-h-\[100dvh\] {
+    min-height: 100svh !important;
   }
 }
