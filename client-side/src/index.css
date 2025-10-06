@@ -85,19 +85,8 @@ body {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   position: relative;
-}
-
-/* Bottom seam cover: hides 1px GPU rounding artifact on some mobile browsers */
-body::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px; /* slightly larger than 1px to cover during dynamic toolbar */
-  pointer-events: none;
-  background: linear-gradient(to bottom, rgba(2,6,23,0) 0%, #020617 60%);
-  z-index: 2147483647; /* ensure on top */
+  transform: translateZ(0); /* prevent subpixel seam on some GPUs */
+  backface-visibility: hidden;
 }
 
 /* App viewport height utility using dynamic --vh (visual viewport) */
@@ -542,4 +531,14 @@ input, textarea, select {
   h1 { font-size: clamp(1.85rem, 7.2vw, 2.35rem); }
   h2 { font-size: clamp(1.4rem, 6.2vw, 1.8rem); }
   h3 { font-size: clamp(1.2rem, 5.4vw, 1.45rem); }
+  body { 
+    animation: none !important; /* static background prevents gradient shift line */
+    background-size: cover; /* stable rasterization */
+    background-attachment: scroll; /* avoid fixed artifacts */
+  }
+}
+
+/* Slightly larger breakpoint to catch mid-size phones */
+@media (max-width: 600px) {
+  body { animation: none !important; }
 }

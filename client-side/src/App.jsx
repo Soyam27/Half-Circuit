@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-  <div className="min-h-app overflow-x-hidden relative" style={{fontFamily: "'Pixelify Sans', 'Inter', sans-serif"}}>
+  <div className="min-h-app-overshoot overflow-x-hidden relative" style={{fontFamily: "'Pixelify Sans', 'Inter', sans-serif"}}>
         {/* Scroll to top on route change */}
         <ScrollToTop />
         
