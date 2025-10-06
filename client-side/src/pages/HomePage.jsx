@@ -1,0 +1,22 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+
+const HomePage = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (query) => {
+    // Redirect to main page with search query
+    navigate(`/main?q=${encodeURIComponent(query)}`);
+  };
+
+  return (
+    <>
+      <Hero onSearch={handleSearch} />
+      <Features />
+    </>
+  );
+};
+
+export default HomePage;

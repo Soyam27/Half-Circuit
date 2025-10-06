@@ -1,0 +1,44 @@
+#############################################
+# Backend service dependencies (pinned)
+#
+# To refresh versions later:
+#   1. pip install -U --upgrade-strategy eager -r requirements.txt
+#   2. pip freeze > new.txt  (then selectively bump)
+#
+# Runtime framework & ASGI server
+fastapi==0.115.2           # Web framework used in main.py
+uvicorn==0.30.6            # ASGI server to run FastAPI (install separately)
+
+# Data validation (FastAPI dependency but pin explicitly)
+pydantic==2.9.2            # Models (BaseModel) imported in main.py
+annotated-types==0.7.0     # Pydantic dependency (ensure lock of major compatibility)
+
+# Environment variables
+python-dotenv==1.0.1       # load_dotenv usage
+
+# HTTP client & parsing
+requests==2.32.3           # External HTTP calls & scraping
+beautifulsoup4==4.12.3     # HTML parsing (BeautifulSoup)
+soupsieve==2.6             # bs4 dependency (explicit pin for reproducibility)
+
+# Google Generative AI (gemini)
+google-generativeai==0.8.3 # Provides google.genai Client (imported as from google import genai)
+
+# Firebase Admin SDK
+firebase-admin==6.5.0      # Firestore + credentials certificate initialization
+google-cloud-firestore==2.17.0  # Explicit Firestore pin to avoid implicit latest
+google-api-core==2.19.2    # Core Google libs (stability pin)
+
+# OpenAI (present previously; keep if still needed elsewhere)
+openai==0.28.1             # Retained; remove if unused
+
+# Utilities
+python-dateutil==2.9.0.post0  # Datetime robustness (optional; used indirectly by google libs)
+
+#############################################
+# (Optional) Dev / tooling (uncomment if needed)
+# httpx==0.27.2            # Alternative async HTTP client
+# black==24.8.0            # Code formatting
+# mypy==1.11.2             # Static type checking
+# pytest==8.3.3            # Testing framework
+
