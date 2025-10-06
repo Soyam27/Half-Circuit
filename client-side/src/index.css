@@ -66,20 +66,12 @@
 
 html {
   scroll-behavior: smooth;
-  height: 100%;
-  min-height: 100vh;
-  min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
-  background-color: #020617; /* Solid fallback background */
 }
 
 body {
   margin: 0;
-  padding: 0;
-  height: 100%;
   min-height: 100vh;
-  min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
   font-family: 'Pixelify Sans', 'Inter', sans-serif;
-  background: #020617; /* Solid fallback first */
   background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.12), transparent 60%),
               radial-gradient(circle at 80% 70%, rgba(168,85,247,0.12), transparent 65%),
               linear-gradient(115deg, #020617 0%, #0f172a 45%, #1e293b 70%, #020617 100%);
@@ -88,13 +80,6 @@ body {
   color: var(--surface-100);
   overflow-x: hidden; /* Prevent horizontal scroll on small devices */
   background-attachment: fixed; /* Prevent white flashes during scroll on mobile */
-}
-
-/* Ensure React root covers full height */
-#root {
-  min-height: 100vh;
-  min-height: 100dvh;
-  background-color: #020617; /* Solid fallback background */
 }
 
 /* Light theme overrides */
@@ -543,11 +528,7 @@ input, textarea, select {
   /* Prevent mobile white flickers and ensure full coverage */
   html, body { 
     -webkit-overflow-scrolling: touch;
-    height: 100% !important;
-    min-height: 100vh !important;
-    min-height: 100svh !important; /* Use small viewport height for mobile */
-    background-attachment: local !important; /* Override fixed attachment on mobile */
-    background-color: #020617 !important; /* Force solid background */
+    background-attachment: local; /* Override fixed attachment on mobile */
   }
   
   /* Ensure solid backgrounds on mobile without conflicting positioning */
@@ -555,34 +536,16 @@ input, textarea, select {
     background-color: #0f172a !important;
   }
 
-  /* Force root element to cover full viewport on mobile */
-  #root {
-    min-height: 100vh !important;
-    min-height: 100svh !important; /* Small viewport height for mobile */
-    background-color: #020617 !important;
-    background: linear-gradient(115deg, #020617 0%, #0f172a 45%, #1e293b 70%, #020617 100%) !important;
-  }
-
-  /* Ensure all page containers cover full height */
-  .container-premium {
-    min-height: 100vh;
-    min-height: 100svh;
-  }
-
-  /* Override any white backgrounds that might appear */
-  * {
-    background-color: transparent !important;
-  }
-  
-  /* Except for elements that need specific backgrounds */
-  .glass-effect, 
-  .glass-effect-strong, 
-  .glass-effect-ultra,
-  .dark-glass-effect,
-  button,
-  input,
-  textarea,
-  .gradient-primary {
-    background-color: revert !important;
+  /* Simple fix for white line at bottom */
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: #020617;
+    z-index: -1;
+    pointer-events: none;
   }
 }
