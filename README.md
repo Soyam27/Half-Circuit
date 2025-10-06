@@ -26,43 +26,20 @@ Half Circuit lets you explore any topic by automating Google searches, scraping 
 | **AI / Automation** | OpenAI API or Hugging Face (for summarization) |
 | **Web Scraping** | Requests, Playwright (for JS-heavy sites) |
 
----
-
-## 📂 Folder Structure
-
-half-circuit/
-│
-├── frontend/ # React frontend
-│ ├── src/
-│ │ ├── components/ # Reusable components (Navbar, Hero, Features, etc.)
-│ │ ├── pages/ # Page views
-│ │ ├── App.jsx
-│ │ └── index.css
-│ └── package.json
-│
-├── backend/ # FastAPI backend
-│ ├── app/
-│ │ ├── main.py
-│ │ ├── routes/ # API routes
-│ │ ├── services/ # Core scraping & AI logic
-│ │ └── utils/ # Helpers, caching, etc.
-│ └── requirements.txt
-│
-└── README.md
 
 
----
 
 ## ⚙️ Setup Instructions
 
 ### **1️⃣ Clone the Repository**
 
 ```bash
+git clone https://github.com/yourusername/half-circuit.git
+cd half-circuit
 ```
 Frontend
 ```
-git clone https://github.com/yourusername/half-circuit.git
-cd half-circuit
+
 cd frontend
 npm install
 npm install react-router-dom axios react-icons react-scroll
