@@ -85,7 +85,7 @@ const MainPage = () => {
     runSearch({ query: normalized, userId: user?.uid, token, limit: 10 });
   };
 
-  // Subscribe to background search updates
+
   useEffect(() => {
     const unsub = subscribeSearch(({ query, status, results, error: err }) => {
       // Compare against normalized active query (avoid trailing space mismatch)
