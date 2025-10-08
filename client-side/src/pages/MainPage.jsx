@@ -8,6 +8,7 @@ const MainPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
+  const activeQueryRef = useRef(null);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
@@ -71,7 +72,8 @@ const MainPage = () => {
   }, [searchResults, searchQuery, hasSearched, STORAGE_KEY]);
 
   const performSearch = async (query) => {
-    if (!query.trim()) return;
+    const normalized = query.trim();
+    if (!normalized) return;
     setError(null);
     setIsLoading(true);
     setHasSearched(true);
@@ -79,13 +81,15 @@ const MainPage = () => {
     if (user && user.getIdToken) {
       try { token = await user.getIdToken(); } catch {}
     }
-    runSearch({ query, userId: user?.uid, token, limit: 10 });
+    activeQueryRef.current = normalized;
+    runSearch({ query: normalized, userId: user?.uid, token, limit: 10 });
   };
 
   // Subscribe to background search updates
   useEffect(() => {
     const unsub = subscribeSearch(({ query, status, results, error: err }) => {
-      if (query !== searchQuery) return; // only update active query view
+      // Compare against normalized active query (avoid trailing space mismatch)
+      if (!query || (activeQueryRef.current && query !== activeQueryRef.current)) return;
       if (status === 'running') {
         setIsLoading(true);
       } else {
@@ -100,7 +104,7 @@ const MainPage = () => {
       }
     });
     // If there is an ongoing search for current query on mount, hydrate
-    const existing = getSearchState(searchQuery);
+    const existing = getSearchState(searchQuery.trim());
     if (existing) {
       setHasSearched(true);
       setIsLoading(existing.status === 'running');
@@ -112,9 +116,15 @@ const MainPage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      // Just update the URL; useEffect will trigger performSearch once.
-      navigate(`/main?q=${encodeURIComponent(searchQuery)}`);
+    const normalized = searchQuery.trim();
+    if (normalized) {
+      // Update URL only if different (avoid duplicate effect triggers)
+      if (normalized !== searchParams.get('q')) {
+        navigate(`/main?q=${encodeURIComponent(normalized)}`);
+      } else {
+        // If same query param but manual submit, re-run search explicitly
+        performSearch(normalized);
+      }
     }
   };
 
