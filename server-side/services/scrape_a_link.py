@@ -35,15 +35,21 @@ def extract_content(elements, url):
     SKIP_TAGS = {"script", "style", "nav", "footer", "header", "form", "noscript", "svg", "iframe", "button"}
     paragraphs, images, links = [], [], []
     last_para = None
+    seen_paragraphs = set()  # normalized paragraph text
+    seen_images = set()      # (src, alt)
+    seen_links = set()       # (href, text)
 
     def add_para(text: str):
         nonlocal last_para
         if not text:
             return
         # Always collect paragraph-ish content; light filtering only
-        if is_valid_text(text) and text != last_para:
-            paragraphs.append(text)
-            last_para = text
+        if is_valid_text(text):
+            norm = text.lower()
+            if norm != last_para and norm not in seen_paragraphs:
+                paragraphs.append(text)
+                last_para = norm
+                seen_paragraphs.add(norm)
 
     for root in elements:
         if not getattr(root, 'name', None):
@@ -55,16 +61,25 @@ def extract_content(elements, url):
             if not name or name in SKIP_TAGS:
                 continue
             if name == 'img' and node.get('src'):
-                images.append({
-                    'src': urljoin(url, node.get('src')),
-                    'alt': node.get('alt', ''),
-                    'caption': node.get('title', '')
-                })
+                src_abs = urljoin(url, node.get('src'))
+                alt_txt = node.get('alt', '')
+                key = (src_abs, alt_txt.strip().lower())
+                if key not in seen_images:
+                    images.append({
+                        'src': src_abs,
+                        'alt': alt_txt,
+                        'caption': node.get('title', '')
+                    })
+                    seen_images.add(key)
                 continue
             if name == 'a' and node.get('href'):
                 ltxt = clean_text(node.get_text(' '))
                 if is_valid_text(ltxt):
-                    links.append({'href': urljoin(url, node.get('href')), 'text': ltxt})
+                    href_abs = urljoin(url, node.get('href'))
+                    key = (href_abs, ltxt.lower())
+                    if key not in seen_links:
+                        links.append({'href': href_abs, 'text': ltxt})
+                        seen_links.add(key)
                 continue
             if name in {'p','li'}:
                 add_para(clean_text(node.get_text(' ')))
@@ -232,15 +247,8 @@ def scrape_website(url: str):
                             **top_content
                         })
                 for child in top['children']:
-                    # Aggregate child's own content + all descendant content
-                    aggregated_elements = child['content_elements'][:]
-                    # include deeper descendants' heading tags & content
-                    for gc in child['children']:
-                        h_tag = soup.new_tag(f"h{gc['level']}")
-                        h_tag.string = gc['title']
-                        aggregated_elements.append(h_tag)
-                        aggregated_elements.extend(gather_descendant_elements(gc, soup))
-                    child_content = extract_content(aggregated_elements, url)
+                    # Use ONLY the child's direct content elements (no descendant aggregation) to avoid duplication.
+                    child_content = extract_content(child['content_elements'], url)
                     if child_content['content'] or child_content['images'] or child_content['links']:
                         section['subsections'].append({
                             'id': child['id'],

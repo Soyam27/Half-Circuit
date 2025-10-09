@@ -90,6 +90,14 @@ def search_google(request):
                     link = item.get("link")
                     if not link:
                         continue
+                    # Exclude Wikipedia domains (both en.wikipedia.org and other language subdomains)
+                    try:
+                        host = urlparse(link).hostname or ""
+                    except Exception:
+                        host = ""
+                    if host.endswith("wikipedia.org"):
+                        # Skip but do NOT count toward quota so we still attempt to fill TARGET_COUNT
+                        continue
                     favicon = get_favicon_url(link)
                     category = get_category_from_meta(link)
                     collected.append({

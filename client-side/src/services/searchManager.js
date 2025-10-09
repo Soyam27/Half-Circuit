@@ -55,7 +55,20 @@ export async function runSearch({ query, userId, token, limit = 10 }) {
       emit({ query: trimmed, ...meta });
       return;
     }
-    const mapped = (data.results || []).map((r, idx) => {
+    const mapped = (data.results || [])
+      // Client-side safeguard: exclude any wikipedia.org domains
+      .filter(r => {
+        const rawUrl = (r.url || r.link || '').trim();
+        if (!rawUrl) return false;
+        try {
+          const host = new URL(rawUrl).hostname;
+          if (host && host.endsWith('wikipedia.org')) return false;
+        } catch {
+          // if URL parsing fails, keep it (won't match wikipedia filter)
+        }
+        return true;
+      })
+      .map((r, idx) => {
       const rawUrl = (r.url || r.link || '').trim();
       if (!rawUrl) return null;
       let domain;
@@ -73,7 +86,7 @@ export async function runSearch({ query, userId, token, limit = 10 }) {
         publishDate: publishDate || '—',
         category: normalizedCategory
       };
-    }).filter(Boolean);
+  }).filter(Boolean);
 
     meta.status = 'done';
     meta.results = mapped;
