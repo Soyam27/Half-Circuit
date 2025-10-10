@@ -12,7 +12,10 @@ import {
   BookOpen,
   Copy,
   Share2,
-  Download
+  Download,
+  X,
+  ZoomIn,
+  Info
 } from 'lucide-react';
 
 // Skeleton loader blocks
@@ -90,6 +93,7 @@ const ContentDetail = () => {
   const [expandedSubsections, setExpandedSubsections] = useState({});
   const [summaries, setSummaries] = useState({});
   const [isGeneratingSummary, setIsGeneratingSummary] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     if (!url) {
@@ -225,6 +229,37 @@ const ContentDetail = () => {
     // Add toast notification here
   };
 
+  // Image modal component
+  const ImageModal = ({ image, onClose }) => {
+    if (!image) return null;
+    
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div className="relative max-w-4xl max-h-[90vh] w-full">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+          <div className="bg-slate-900 rounded-xl overflow-hidden">
+            <img 
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-auto max-h-[70vh] object-contain"
+            />
+            {(image.alt || image.caption) && (
+              <div className="p-4 bg-slate-800">
+                {image.alt && <p className="text-white font-medium mb-1">{image.alt}</p>}
+                {image.caption && <p className="text-slate-300 text-sm">{image.caption}</p>}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   if (isLoading) {
     return <ContentSkeleton />;
   }
@@ -273,8 +308,10 @@ const ContentDetail = () => {
   }
 
   return (
-    <div className="container-premium pt-36 sm:pt-40 pb-12">
-      <div className="max-w-4xl mb-10 pt-30  mx-auto">
+    <>
+      <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />
+      <div className="container-premium pt-36 sm:pt-40 pb-12">
+        <div className="max-w-4xl mb-10 pt-30  mx-auto">
         {/* Back Button - Fixed positioning */}
         <div className="mb-6">
           <Link to="/main" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium">
@@ -435,50 +472,126 @@ const ContentDetail = () => {
                                 <p key={i} className="text-slate-300 leading-relaxed">{para}</p>
                               )) || <p className="text-slate-500 italic">No content extracted.</p>}
                           </div>
+
+                          {/* Related Links */}
+                          {subsection.links && subsection.links.length > 0 && (
+                            <div className="space-y-4">
+                              <h4 className="text-white font-semibold flex items-center gap-2">
+                                <ExternalLink size={16} />
+                                Related Links ({subsection.links.length})
+                              </h4>
+                              <div className="grid gap-3 sm:grid-cols-1 lg:grid-cols-2">
+                                {subsection.links.map((link, index) => {
+                                  // Extract domain for favicon
+                                  let domain = '';
+                                  try {
+                                    domain = new URL(link.href).hostname;
+                                  } catch {}
+                                  
+                                  return (
+                                    <a
+                                      key={index}
+                                      href={link.href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="group flex items-start gap-3 p-3 bg-slate-800/30 hover:bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-blue-500/30 transition-all duration-200"
+                                    >
+                                      <div className="flex-shrink-0 w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center mt-0.5">
+                                        {domain ? (
+                                          <img 
+                                            src={`https://www.google.com/s2/favicons?domain=${domain}&sz=16`}
+                                            alt=""
+                                            className="w-4 h-4"
+                                            onError={(e) => {
+                                              e.target.style.display = 'none';
+                                              e.target.nextSibling.style.display = 'block';
+                                            }}
+                                          />
+                                        ) : null}
+                                        <ExternalLink size={14} className={`text-slate-400 ${domain ? 'hidden' : 'block'}`} />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="text-blue-400 group-hover:text-blue-300 font-medium text-sm line-clamp-2 transition-colors">
+                                          {link.text}
+                                        </p>
+                                        {link.description && link.description !== "External link" && (
+                                          <p className="text-slate-400 text-xs mt-1 line-clamp-2">
+                                            {link.description}
+                                          </p>
+                                        )}
+                                        {domain && (
+                                          <p className="text-slate-500 text-xs mt-1 flex items-center gap-1">
+                                            <Info size={10} />
+                                            {domain}
+                                          </p>
+                                        )}
+                                      </div>
+                                      <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-400 transition-colors flex-shrink-0 mt-1" />
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
                           
                           {/* Images */}
                           {subsection.images && subsection.images.length > 0 && (
                             <div className="space-y-4">
                               <h4 className="text-white font-semibold flex items-center gap-2">
                                 <Image size={16} />
-                                Images & Diagrams
+                                Images & Diagrams ({subsection.images.length})
                               </h4>
-                              <div className="grid grid-cols-1 gap-4">
+                              <div className={`grid gap-4 ${
+                                subsection.images.length === 1 
+                                  ? 'grid-cols-1' 
+                                  : subsection.images.length === 2 
+                                    ? 'grid-cols-1 md:grid-cols-2' 
+                                    : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                              }`}>
                                 {subsection.images.map((image, index) => (
-                                  <div key={index} className="bg-slate-800/50 rounded-lg overflow-hidden">
-                                    <img 
-                                      src={image.src} 
-                                      alt={image.alt}
-                                      className="w-full h-auto"
-                                    />
-                                    {image.caption && (
-                                      <p className="p-3 text-sm text-slate-400">{image.caption}</p>
+                                  <div 
+                                    key={index} 
+                                    className="group relative bg-slate-800/50 rounded-lg overflow-hidden cursor-pointer hover:bg-slate-800/70 transition-all duration-300"
+                                    onClick={() => setSelectedImage(image)}
+                                  >
+                                    <div className="aspect-video bg-slate-700 relative overflow-hidden">
+                                      <img 
+                                        src={image.src} 
+                                        alt={image.alt}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                        onError={(e) => {
+                                          e.target.parentNode.innerHTML = `
+                                            <div class="w-full h-full flex items-center justify-center text-slate-500">
+                                              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                                              </svg>
+                                            </div>
+                                          `;
+                                        }}
+                                      />
+                                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                                        <ZoomIn 
+                                          size={24} 
+                                          className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                                        />
+                                      </div>
+                                    </div>
+                                    {(image.alt || image.caption) && (
+                                      <div className="p-3">
+                                        {image.alt && (
+                                          <p className="text-white text-sm font-medium line-clamp-2 mb-1">
+                                            {image.alt}
+                                          </p>
+                                        )}
+                                        {image.caption && image.caption !== image.alt && (
+                                          <p className="text-slate-400 text-xs line-clamp-2">
+                                            {image.caption}
+                                          </p>
+                                        )}
+                                      </div>
                                     )}
                                   </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          
-                          {/* Related Links */}
-                          {subsection.links && subsection.links.length > 0 && (
-                            <div className="space-y-3">
-                              <h4 className="text-white font-semibold flex items-center gap-2">
-                                <ExternalLink size={16} />
-                                Related Links
-                              </h4>
-                              <div className="space-y-2">
-                                {subsection.links.map((link, index) => (
-                                  <a
-                                    key={index}
-                                    href={link.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                                  >
-                                    <ExternalLink size={14} />
-                                    {link.text}
-                                  </a>
                                 ))}
                               </div>
                             </div>
@@ -494,6 +607,7 @@ const ContentDetail = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
