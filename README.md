@@ -24,7 +24,7 @@ Half Circuit lets you explore any topic by automating Google searches, scraping 
 | **Frontend** | React, Vite, TailwindCSS, React Router, Axios, React Icons, React Scroll |
 | **Backend** | FastAPI, Uvicorn, BeautifulSoup4, Requests, HTTPX |
 | **AI / Automation** | OpenAI API or Hugging Face (for summarization) |
-| **Web Scraping** | Requests, Playwright (for JS-heavy sites) |
+| **Web Scraping** | Requests, beautifulsoup4 |
 
 
 
